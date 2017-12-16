@@ -85,16 +85,64 @@
                                     <constraint firstAttribute="height" constant="200" id="JbT-iy-LsA"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlh-FW-bQB">
+                                <rect key="frame" x="29" y="296" width="100" height="100"/>
+                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="1H2-Ax-PD2"/>
+                                    <constraint firstAttribute="height" constant="100" id="fii-jv-NQm"/>
+                                </constraints>
+                                <state key="normal" title="Twitteer">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="twitter:" destination="Ouw-7y-EmN" eventType="touchUpInside" id="oKR-ME-hAS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxP-kr-f9Z">
+                                <rect key="frame" x="137" y="296" width="100" height="100"/>
+                                <color key="backgroundColor" red="0.47684186699999997" green="0.50480759139999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="VXa-iL-X1I"/>
+                                    <constraint firstAttribute="height" constant="100" id="noe-ec-CfK"/>
+                                </constraints>
+                                <state key="normal" title="FB">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebook:" destination="Ouw-7y-EmN" eventType="touchUpInside" id="ZK1-OT-PVf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9Q-8G-C0Q">
+                                <rect key="frame" x="245" y="296" width="100" height="100"/>
+                                <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="gI0-Nw-1Pd"/>
+                                    <constraint firstAttribute="width" constant="100" id="klP-hN-piB"/>
+                                </constraints>
+                                <state key="normal" title="保存">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="save:" destination="Ouw-7y-EmN" eventType="touchUpInside" id="SEg-Ob-jud"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="e6z-OH-H1P" firstAttribute="trailing" secondItem="yvR-lI-XWc" secondAttribute="trailing" constant="16" id="82r-xb-upo"/>
+                            <constraint firstItem="g9Q-8G-C0Q" firstAttribute="centerY" secondItem="hlh-FW-bQB" secondAttribute="centerY" id="DaE-C3-gL0"/>
                             <constraint firstItem="yvR-lI-XWc" firstAttribute="top" secondItem="e6z-OH-H1P" secondAttribute="top" constant="16" id="FQO-tg-IgK"/>
                             <constraint firstAttribute="bottom" secondItem="8BI-n6-JLE" secondAttribute="bottom" id="GnU-Sf-6LI"/>
                             <constraint firstItem="8BI-n6-JLE" firstAttribute="top" secondItem="s8n-91-jhR" secondAttribute="top" id="NMU-EX-8DX"/>
+                            <constraint firstItem="bxP-kr-f9Z" firstAttribute="leading" secondItem="hlh-FW-bQB" secondAttribute="trailing" constant="8" id="SBh-vt-prG"/>
                             <constraint firstItem="8BI-n6-JLE" firstAttribute="leading" secondItem="s8n-91-jhR" secondAttribute="leading" id="Ybf-QC-n2W"/>
                             <constraint firstItem="yvR-lI-XWc" firstAttribute="leading" secondItem="e6z-OH-H1P" secondAttribute="leading" constant="16" id="cdP-2p-aMZ"/>
+                            <constraint firstItem="g9Q-8G-C0Q" firstAttribute="leading" secondItem="bxP-kr-f9Z" secondAttribute="trailing" constant="8" id="gbl-mc-vag"/>
+                            <constraint firstItem="bxP-kr-f9Z" firstAttribute="centerX" secondItem="s8n-91-jhR" secondAttribute="centerX" id="lFA-Lr-pr4"/>
+                            <constraint firstItem="bxP-kr-f9Z" firstAttribute="top" secondItem="yvR-lI-XWc" secondAttribute="bottom" constant="16" id="lbv-e1-dnw"/>
                             <constraint firstAttribute="trailing" secondItem="8BI-n6-JLE" secondAttribute="trailing" id="oHA-T4-bE5"/>
+                            <constraint firstItem="bxP-kr-f9Z" firstAttribute="centerY" secondItem="hlh-FW-bQB" secondAttribute="centerY" id="tAZ-hw-9bP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e6z-OH-H1P"/>
                     </view>

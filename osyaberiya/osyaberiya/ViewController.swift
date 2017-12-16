@@ -37,29 +37,33 @@ class ViewController: UIViewController {
 
         let task = URLSession.shared.dataTask(with: request, completionHandler: {
             (data, response, error) in
-            if error == nil {
-                let decoder: JSONDecoder = JSONDecoder()
-                guard let data = data else {
-                    return
-                }
-                do {
-                    let result: Result = try decoder.decode(Result.self, from: data)
-                    print("Sucsess Session :",result)
-                    VideoModel.shared.set(filePath: result.video_url)
-                    
-                    DispatchQueue.main.async {
-                        //画面遷移
-                        let storyboard: UIStoryboard = self.storyboard!
-                        let resultViewController = storyboard.instantiateViewController(withIdentifier: "ResultViewController")
-                        self.present(resultViewController, animated: true, completion: nil)
-                    }
-                    
-                } catch {
-                    print("Error decode")
-                }
-            } else {
-                print("Error Session : \(String(describing: error))")
+            
+            if let error = error {
+                print("Error session　: \(error)")
+                return
             }
+            
+            guard let data = data else {
+                print("Error data")
+                return
+            }
+            let decoder: JSONDecoder = JSONDecoder()
+            do {
+                let result: Result = try decoder.decode(Result.self, from: data)
+                print("Sucsess Session :",result)
+                VideoModel.shared.set(filePath: result.video_url)
+                
+                DispatchQueue.main.async {
+                    //画面遷移
+                    let storyboard: UIStoryboard = self.storyboard!
+                    let resultViewController = storyboard.instantiateViewController(withIdentifier: "ResultViewController")
+                    self.present(resultViewController, animated: true, completion: nil)
+                }
+                
+            } catch {
+                print("Error decode")
+            }
+            
         })
         //sessionスタート
         task.resume()

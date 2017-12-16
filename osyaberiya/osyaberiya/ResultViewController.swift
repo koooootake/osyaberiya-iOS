@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import CoreMedia
+import Photos
 
 class AVPlayerView: UIView {
     
@@ -28,13 +29,17 @@ class AVPlayerView: UIView {
 class ResultViewController: UIViewController {
     
     @IBOutlet weak var playerView: UIView!
-    var playerItem : AVPlayerItem!
-    var videoPlayer : AVPlayer!
+    var playerItem: AVPlayerItem!
+    var videoPlayer: AVPlayer!
+    var fileUrl: URL?
 
     override func viewDidLoad() {
 
         let path = VideoModel.shared.get()
-        let fileUrl = URL(fileURLWithPath: path)
+        fileUrl = URL(fileURLWithPath: path)
+        guard let fileUrl = fileUrl else {
+            return
+        }
         let avAsset = AVURLAsset(url: fileUrl)
  
         playerItem = AVPlayerItem(asset: avAsset)
@@ -56,6 +61,59 @@ class ResultViewController: UIViewController {
         videoPlayer.pause()
     }
     
+    @IBAction func twitter(_ sender: Any) {
+    }
+    
+    @IBAction func facebook(_ sender: Any) {
+    }
+    
+    //動画をダウンロードして保存
+    @IBAction func save(_ sender: Any) {
+        let path = VideoModel.shared.get()
+        guard let url = URL(string: path) else {
+            return
+        }
+        let request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request, completionHandler: {
+            (data, response, error) in
+
+            if let error = error {
+                print("Error session　: \(error)")
+                return
+            }
+            
+            guard let data = data else {
+                print("Error data")
+                return
+            }
+            
+            let searchPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
+            let tmpSearchPath = searchPath + "/tmp.mp4"
+            let tmpUrl = URL(fileURLWithPath: tmpSearchPath)
+            try? data.write(to: tmpUrl)
+            
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: tmpUrl)
+            }) { saved, error in
+                if saved {
+                    self.showAlert(title: "動画を保存しました", message: "")
+                    print("Save video")
+                }
+            }
+            
+        })
+        
+        task.resume()
+        
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
+
     @IBAction func close(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
