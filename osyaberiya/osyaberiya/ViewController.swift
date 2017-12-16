@@ -8,14 +8,24 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UITextViewDelegate {
+    
     let indicator = UIActivityIndicatorView()
     let errorMessage = "@osyaberiyaまでお問い合わせください"
     
+    @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
+    var text: String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 204/255.0, blue: 102/255.0, alpha: 1.0)
+        
+        textView.textContainerInset = UIEdgeInsetsMake(20, 10, 20, 10)
+        textView.sizeToFit()
+        textView.text = "おしゃべりやです"
+        textView.returnKeyType = .done
+        textView.delegate = self
+        countLabel.text = "\(textView.text.count)/99"
         
         //くるくる設定
         indicator.activityIndicatorViewStyle = .whiteLarge
@@ -25,8 +35,45 @@ class ViewController: UIViewController {
         self.view.addSubview(indicator)
         self.view.bringSubview(toFront: indicator)
     }
-
+    
+    func textViewDidChange(_ textView: UITextView) {
+        countLabel.text = "\(textView.text.count)/99"
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let text = textView.text + string
+        if text.count > 99 {
+            return false
+        }
+        return true
+    }
+    
+    //改行とじる
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange,
+                  replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    func textValidation() -> Bool {
+        if textView.text.count < 1 || textView.text.count > 99 {
+            let alert = UIAlertController.show(title: "0 < 文字 < 100 に\nしてください", message: "")
+            self.present(alert, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
+    
     @IBAction func sendText(_ sender: Any) {
+        textView.resignFirstResponder()
+        
+        if !textValidation() {
+            return
+        }
+        
         let inputText = textView.text
         
         let param = [
@@ -50,7 +97,7 @@ class ViewController: UIViewController {
             print("Error JSONSerialization : ", error.localizedDescription)
             return
         }
-
+        
         let task = URLSession.shared.dataTask(with: request, completionHandler: {
             (data, response, error) in
             //くるくるstop
@@ -96,6 +143,12 @@ class ViewController: UIViewController {
         //くるくるstart
         indicator.startAnimating()
     }
+    
+    @IBAction func clearText(_ sender: Any) {
+        textView.text = ""
+        countLabel.text = "\(textView.text.count)/99"
+    }
+    
 }
 
 struct Result: Codable {

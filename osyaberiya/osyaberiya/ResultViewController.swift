@@ -36,6 +36,8 @@ class ResultViewController: UIViewController {
     let errorMessage = "@osyaberiyaまでお問い合わせください"
 
     override func viewDidLoad() {
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 219/255.0, green: 77/255.0, blue: 96/255.0, alpha: 1.0)
+        
         guard let fileUrl = VideoModel.shared.getFileURL() else {
             let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")
             self.present(alert, animated: true, completion: nil)
@@ -46,16 +48,23 @@ class ResultViewController: UIViewController {
         playerItem = AVPlayerItem(asset: avAsset)
         videoPlayer = AVPlayer(playerItem: playerItem)
         
-        let videoPlayerView = AVPlayerView(frame: CGRect(x: 0, y: 0, width: playerView.frame.width, height: playerView.frame.height))
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let videoPlayerView = AVPlayerView(frame: playerView.bounds)
         
         guard let layer = videoPlayerView.layer as? AVPlayerLayer else {
             let alert = UIAlertController.show(title: "動画の表示に失敗しました", message: "")
             self.present(alert, animated: true, completion: nil)
             return
         }
+        layer.videoGravity = .resizeAspectFill
         layer.player = videoPlayer
+        layer.masksToBounds = true
+        layer.cornerRadius = 10
         playerView.layer.addSublayer(layer)
-
+        
         videoPlayer.play()
     }
 
