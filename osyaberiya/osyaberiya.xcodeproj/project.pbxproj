@@ -12,9 +12,11 @@
 		461959371FE4F0E400E5D763 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 461959351FE4F0E400E5D763 /* Main.storyboard */; };
 		461959391FE4F0E400E5D763 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 461959381FE4F0E400E5D763 /* Assets.xcassets */; };
 		4619593C1FE4F0E400E5D763 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4619593A1FE4F0E400E5D763 /* LaunchScreen.storyboard */; };
+		87DF3B9168127E10ACE04403 /* Pods_osyaberiya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE37D20DC7992EB866295AC /* Pods_osyaberiya.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A8B6B412ADECE909F304D5B /* Pods-osyaberiya.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-osyaberiya.release.xcconfig"; path = "Pods/Target Support Files/Pods-osyaberiya/Pods-osyaberiya.release.xcconfig"; sourceTree = "<group>"; };
 		4619592E1FE4F0E400E5D763 /* osyaberiya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = osyaberiya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		461959311FE4F0E400E5D763 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		461959331FE4F0E400E5D763 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +24,8 @@
 		461959381FE4F0E400E5D763 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4619593B1FE4F0E400E5D763 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4619593D1FE4F0E400E5D763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAE37D20DC7992EB866295AC /* Pods_osyaberiya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_osyaberiya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E473DD01AD0C9AD8B95EAB03 /* Pods-osyaberiya.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-osyaberiya.debug.xcconfig"; path = "Pods/Target Support Files/Pods-osyaberiya/Pods-osyaberiya.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87DF3B9168127E10ACE04403 /* Pods_osyaberiya.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				461959301FE4F0E400E5D763 /* osyaberiya */,
 				4619592F1FE4F0E400E5D763 /* Products */,
+				9B11BCE5696000FA612ECD70 /* Pods */,
+				7C833DC5A7EC3B1F573DBC00 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = osyaberiya;
 			sourceTree = "<group>";
 		};
+		7C833DC5A7EC3B1F573DBC00 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BAE37D20DC7992EB866295AC /* Pods_osyaberiya.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B11BCE5696000FA612ECD70 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E473DD01AD0C9AD8B95EAB03 /* Pods-osyaberiya.debug.xcconfig */,
+				1A8B6B412ADECE909F304D5B /* Pods-osyaberiya.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 461959401FE4F0E400E5D763 /* Build configuration list for PBXNativeTarget "osyaberiya" */;
 			buildPhases = (
+				1DF227E10A1824295A0230DC /* [CP] Check Pods Manifest.lock */,
 				4619592A1FE4F0E400E5D763 /* Sources */,
 				4619592B1FE4F0E400E5D763 /* Frameworks */,
 				4619592C1FE4F0E400E5D763 /* Resources */,
+				C5F29F1542EA3FA6A70ADA18 /* [CP] Embed Pods Frameworks */,
+				8C6700C9DF41678313B81ADA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1DF227E10A1824295A0230DC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-osyaberiya-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C6700C9DF41678313B81ADA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-osyaberiya/Pods-osyaberiya-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5F29F1542EA3FA6A70ADA18 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-osyaberiya/Pods-osyaberiya-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4619592A1FE4F0E400E5D763 /* Sources */ = {
@@ -272,6 +350,7 @@
 		};
 		461959411FE4F0E400E5D763 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E473DD01AD0C9AD8B95EAB03 /* Pods-osyaberiya.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -288,6 +367,7 @@
 		};
 		461959421FE4F0E400E5D763 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A8B6B412ADECE909F304D5B /* Pods-osyaberiya.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
