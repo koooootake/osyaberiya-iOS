@@ -53,10 +53,10 @@ class ResultViewController: UIViewController {
 
         videoPlayer.play()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        videoPlayer.pause()
+
+    @IBAction func replay(_ sender: Any) {
+        videoPlayer.seek(to: CMTimeMakeWithSeconds(0, Int32(NSEC_PER_SEC)))
+        videoPlayer.play()
     }
     
     @IBAction func twitter(_ sender: Any) {

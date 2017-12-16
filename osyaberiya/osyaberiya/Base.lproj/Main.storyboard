@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--おしゃべりや-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="osyaberiya" customModuleProvider="target" sceneMemberID="viewController">
@@ -59,7 +59,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hhY-yb-5a1"/>
+                    <navigationItem key="navigationItem" title="おしゃべりや" id="hhY-yb-5a1"/>
                     <connections>
                         <outlet property="textView" destination="sof-PE-9NE" id="uJY-s5-zPf"/>
                     </connections>
@@ -68,7 +68,7 @@
             </objects>
             <point key="canvasLocation" x="498" y="90"/>
         </scene>
-        <!--Result View Controller-->
+        <!--おしゃべりや-->
         <scene sceneID="WmY-Ol-Jru">
             <objects>
                 <viewController id="Ouw-7y-EmN" customClass="ResultViewController" customModule="osyaberiya" customModuleProvider="target" sceneMemberID="viewController">
@@ -80,47 +80,50 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvR-lI-XWc">
-                                <rect key="frame" x="16" y="80" width="343" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="JbT-iy-LsA"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="80" width="343" height="187.5"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlh-FW-bQB">
-                                <rect key="frame" x="29" y="296" width="100" height="100"/>
-                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovi-uX-Vqo">
+                                <rect key="frame" x="16" y="80" width="343" height="187.5"/>
+                                <connections>
+                                    <action selector="replay:" destination="Ouw-7y-EmN" eventType="touchUpInside" id="qEy-jO-yU4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlh-FW-bQB">
+                                <rect key="frame" x="29" y="283.5" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="1H2-Ax-PD2"/>
                                     <constraint firstAttribute="height" constant="100" id="fii-jv-NQm"/>
                                 </constraints>
-                                <state key="normal" title="Twitteer">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="twi">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="twitter:" destination="Ouw-7y-EmN" eventType="touchUpInside" id="oKR-ME-hAS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxP-kr-f9Z">
-                                <rect key="frame" x="137" y="296" width="100" height="100"/>
-                                <color key="backgroundColor" red="0.47684186699999997" green="0.50480759139999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxP-kr-f9Z">
+                                <rect key="frame" x="137" y="283.5" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="VXa-iL-X1I"/>
                                     <constraint firstAttribute="height" constant="100" id="noe-ec-CfK"/>
                                 </constraints>
-                                <state key="normal" title="FB">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="fb">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="facebook:" destination="Ouw-7y-EmN" eventType="touchUpInside" id="ZK1-OT-PVf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9Q-8G-C0Q">
-                                <rect key="frame" x="245" y="296" width="100" height="100"/>
-                                <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9Q-8G-C0Q">
+                                <rect key="frame" x="245" y="283.5" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="gI0-Nw-1Pd"/>
                                     <constraint firstAttribute="width" constant="100" id="klP-hN-piB"/>
                                 </constraints>
-                                <state key="normal" title="保存">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="save">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -130,23 +133,28 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="hlh-FW-bQB" firstAttribute="top" secondItem="yvR-lI-XWc" secondAttribute="bottom" constant="16" id="2fb-cE-x6y"/>
+                            <constraint firstItem="ovi-uX-Vqo" firstAttribute="leading" secondItem="e6z-OH-H1P" secondAttribute="leading" constant="16" id="4dO-RD-ps0"/>
                             <constraint firstItem="e6z-OH-H1P" firstAttribute="trailing" secondItem="yvR-lI-XWc" secondAttribute="trailing" constant="16" id="82r-xb-upo"/>
-                            <constraint firstItem="g9Q-8G-C0Q" firstAttribute="centerY" secondItem="hlh-FW-bQB" secondAttribute="centerY" id="DaE-C3-gL0"/>
+                            <constraint firstItem="ovi-uX-Vqo" firstAttribute="top" secondItem="e6z-OH-H1P" secondAttribute="top" constant="16" id="Bc6-DK-EEU"/>
+                            <constraint firstItem="g9Q-8G-C0Q" firstAttribute="top" secondItem="yvR-lI-XWc" secondAttribute="bottom" constant="16" id="Ds2-mE-Q8R"/>
                             <constraint firstItem="yvR-lI-XWc" firstAttribute="top" secondItem="e6z-OH-H1P" secondAttribute="top" constant="16" id="FQO-tg-IgK"/>
                             <constraint firstAttribute="bottom" secondItem="8BI-n6-JLE" secondAttribute="bottom" id="GnU-Sf-6LI"/>
                             <constraint firstItem="8BI-n6-JLE" firstAttribute="top" secondItem="s8n-91-jhR" secondAttribute="top" id="NMU-EX-8DX"/>
+                            <constraint firstItem="bxP-kr-f9Z" firstAttribute="centerY" secondItem="s8n-91-jhR" secondAttribute="centerY" id="P2D-d5-3sM"/>
                             <constraint firstItem="bxP-kr-f9Z" firstAttribute="leading" secondItem="hlh-FW-bQB" secondAttribute="trailing" constant="8" id="SBh-vt-prG"/>
+                            <constraint firstItem="hlh-FW-bQB" firstAttribute="top" secondItem="ovi-uX-Vqo" secondAttribute="bottom" constant="16" id="ShH-Wm-svo"/>
+                            <constraint firstItem="e6z-OH-H1P" firstAttribute="trailing" secondItem="ovi-uX-Vqo" secondAttribute="trailing" constant="16" id="VYA-LL-IAZ"/>
                             <constraint firstItem="8BI-n6-JLE" firstAttribute="leading" secondItem="s8n-91-jhR" secondAttribute="leading" id="Ybf-QC-n2W"/>
                             <constraint firstItem="yvR-lI-XWc" firstAttribute="leading" secondItem="e6z-OH-H1P" secondAttribute="leading" constant="16" id="cdP-2p-aMZ"/>
                             <constraint firstItem="g9Q-8G-C0Q" firstAttribute="leading" secondItem="bxP-kr-f9Z" secondAttribute="trailing" constant="8" id="gbl-mc-vag"/>
                             <constraint firstItem="bxP-kr-f9Z" firstAttribute="centerX" secondItem="s8n-91-jhR" secondAttribute="centerX" id="lFA-Lr-pr4"/>
                             <constraint firstItem="bxP-kr-f9Z" firstAttribute="top" secondItem="yvR-lI-XWc" secondAttribute="bottom" constant="16" id="lbv-e1-dnw"/>
                             <constraint firstAttribute="trailing" secondItem="8BI-n6-JLE" secondAttribute="trailing" id="oHA-T4-bE5"/>
-                            <constraint firstItem="bxP-kr-f9Z" firstAttribute="centerY" secondItem="hlh-FW-bQB" secondAttribute="centerY" id="tAZ-hw-9bP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e6z-OH-H1P"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2uN-zN-Eat">
+                    <navigationItem key="navigationItem" title="おしゃべりや" id="2uN-zN-Eat">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="NVx-58-Kaq">
                             <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -160,7 +168,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxV-KS-euK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1972" y="89"/>
+            <point key="canvasLocation" x="1972" y="88.605697151424295"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hxW-MY-ugW">
@@ -201,5 +209,8 @@
     </scenes>
     <resources>
         <image name="bg" width="596" height="842"/>
+        <image name="fb" width="64" height="64"/>
+        <image name="save" width="65" height="64"/>
+        <image name="twi" width="64" height="64"/>
     </resources>
 </document>
