@@ -11,11 +11,13 @@ import UIKit
 class ViewController: UIViewController {
 
     let indicator = UIActivityIndicatorView()
+    let errorMessage = "@osyaberiyaまでお問い合わせください"
     
     @IBOutlet weak var textView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //くるくる設定
         indicator.activityIndicatorViewStyle = .whiteLarge
         indicator.center = self.view.center
         indicator.color = UIColor.white
@@ -32,6 +34,9 @@ class ViewController: UIViewController {
         ]
         
         guard let url = URL(string: "http://osyaberiya.com/generate") else {
+            let alert = UIAlertController.show(title: "URLが無効です", message: errorMessage)
+            self.present(alert, animated: true, completion: nil)
+            print("Error URL")
             return
         }
         var request = URLRequest(url: url)
@@ -40,7 +45,10 @@ class ViewController: UIViewController {
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: param, options: .prettyPrinted)
         } catch {
+            let alert = UIAlertController.show(title: "テキストが無効です", message: errorMessage)
+            self.present(alert, animated: true, completion: nil)
             print("Error JSONSerialization : ", error.localizedDescription)
+            return
         }
 
         let task = URLSession.shared.dataTask(with: request, completionHandler: {
@@ -51,19 +59,24 @@ class ViewController: UIViewController {
             }
             
             if let error = error {
-                print("Error session　: \(error)")
+                let alert = UIAlertController.show(title: "通信に失敗しました", message: "")
+                self.present(alert, animated: true, completion: nil)
+                print("Error session: \(error)")
                 return
             }
             
             guard let data = data else {
+                let alert = UIAlertController.show(title: "動画の生成に失敗しました", message: "繰り返し失敗する場合は\n\(self.errorMessage)")
+                self.present(alert, animated: true, completion: nil)
                 print("Error data")
                 return
             }
+            
             let decoder: JSONDecoder = JSONDecoder()
             do {
                 let result: Result = try decoder.decode(Result.self, from: data)
-                print("Sucsess Session :",result)
                 VideoModel.shared.set(filePath: result.video_url)
+                print("Sucsess session :",result)
                 
                 DispatchQueue.main.async {
                     //画面遷移
@@ -73,15 +86,16 @@ class ViewController: UIViewController {
                 }
                 
             } catch {
+                let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: "繰り返し失敗する場合は\n\(self.errorMessage)")
+                self.present(alert, animated: true, completion: nil)
                 print("Error decode")
             }
-            
         })
+        
         task.resume()
         //くるくるstart
         indicator.startAnimating()
     }
-
 }
 
 struct Result: Codable {

@@ -33,9 +33,12 @@ class ResultViewController: UIViewController {
     var playerItem: AVPlayerItem!
     var videoPlayer: AVPlayer!
     var fileUrl: URL?
+    let errorMessage = "@osyaberiyaまでお問い合わせください"
 
     override func viewDidLoad() {
         guard let fileUrl = VideoModel.shared.getFileURL() else {
+            let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")
+            self.present(alert, animated: true, completion: nil)
             return
         }
         let avAsset = AVURLAsset(url: fileUrl)
@@ -46,6 +49,8 @@ class ResultViewController: UIViewController {
         let videoPlayerView = AVPlayerView(frame: CGRect(x: 0, y: 0, width: playerView.frame.width, height: playerView.frame.height))
         
         guard let layer = videoPlayerView.layer as? AVPlayerLayer else {
+            let alert = UIAlertController.show(title: "動画の表示に失敗しました", message: "")
+            self.present(alert, animated: true, completion: nil)
             return
         }
         layer.player = videoPlayer
@@ -62,13 +67,15 @@ class ResultViewController: UIViewController {
     @IBAction func twitter(_ sender: Any) {
         if TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers() {// ログインしている時
             guard let url = VideoModel.shared.getURL() else {
+                let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             let composer = TWTRComposerViewController(initialText: "#おしゃべりや", image: nil, videoURL: url)
             present(composer, animated: true, completion: nil)
         } else {// ログインしていない時
             TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
-                if (session != nil) {
+                if session != nil {
                     print("Success Twitter: ");
                 } else {
                     print("Error Twitter: ");
@@ -83,6 +90,8 @@ class ResultViewController: UIViewController {
     // 動画をダウンロードして保存
     @IBAction func save(_ sender: Any) {
         guard let url = VideoModel.shared.getURL() else {
+            let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")
+            self.present(alert, animated: true, completion: nil)
             return
         }
         let request = URLRequest(url: url)
@@ -90,16 +99,20 @@ class ResultViewController: UIViewController {
             (data, response, error) in
 
             if let error = error {
+                let alert = UIAlertController.show(title: "通信に失敗しました", message: "")
+                self.present(alert, animated: true, completion: nil)
                 print("Error session　: \(error)")
                 return
             }
             
-            guard let data = data else {
-                print("Error data")
+            guard
+                let data = data,
+                let searchPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last else {
+                self.videoSaveErrorAlert()
+                print("Error data or Path")
                 return
             }
-            
-            let searchPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
+
             let tmpSearchPath = searchPath + "/tmp.mp4"
             let tmpUrl = URL(fileURLWithPath: tmpSearchPath)
             try? data.write(to: tmpUrl)
@@ -108,21 +121,22 @@ class ResultViewController: UIViewController {
                 PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: tmpUrl)
             }) { saved, error in
                 if saved {
-                    self.showAlert(title: "動画を保存しました", message: "")
-                    print("Save video")
+                    let alert = UIAlertController.show(title: "動画を保存しました", message: "")
+                    self.present(alert, animated: true, completion: nil)
+                    print("Sucsess save video")
+                } else {
+                    self.videoSaveErrorAlert()
                 }
             }
         })
-        
         task.resume()
     }
     
-    func showAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(action)
-        self.present(alertController, animated: true, completion: nil)
+    private func videoSaveErrorAlert() {
+        let alert = UIAlertController.show(title: "動画の保存に失敗しました", message: "繰り返し失敗する場合は\n\(self.errorMessage)")
+        self.present(alert, animated: true, completion: nil)
     }
+
 
     @IBAction func close(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
