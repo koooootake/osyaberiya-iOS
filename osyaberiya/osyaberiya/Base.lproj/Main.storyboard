@@ -34,9 +34,9 @@
                                     <action selector="sendText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qq4-JX-uTe"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="こんにちは" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sof-PE-9NE">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sof-PE-9NE">
                                 <rect key="frame" x="16" y="80" width="343" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Mlw-e5-GeX"/>
                                 </constraints>

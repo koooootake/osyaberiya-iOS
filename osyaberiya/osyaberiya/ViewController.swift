@@ -17,8 +17,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func sendText(_ sender: Any) {
+        let inputText = textView.text
+        
         let param = [
-            "input" : "アイウエオ"
+            "input" : inputText
         ]
         
         guard let url = URL(string: "http://osyaberiya.com/generate") else {
