@@ -10,10 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let indicator = UIActivityIndicatorView()
+    
     @IBOutlet weak var textView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        indicator.activityIndicatorViewStyle = .whiteLarge
+        indicator.center = self.view.center
+        indicator.color = UIColor.white
+        indicator.hidesWhenStopped = true
+        self.view.addSubview(indicator)
+        self.view.bringSubview(toFront: indicator)
     }
 
     @IBAction func sendText(_ sender: Any) {
@@ -37,6 +45,10 @@ class ViewController: UIViewController {
 
         let task = URLSession.shared.dataTask(with: request, completionHandler: {
             (data, response, error) in
+            //くるくるstop
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+            }
             
             if let error = error {
                 print("Error session　: \(error)")
@@ -65,9 +77,11 @@ class ViewController: UIViewController {
             }
             
         })
-        //sessionスタート
         task.resume()
+        //くるくるstart
+        indicator.startAnimating()
     }
+
 }
 
 struct Result: Codable {
