@@ -35,10 +35,7 @@ class ResultViewController: UIViewController {
     var fileUrl: URL?
 
     override func viewDidLoad() {
-
-        let path = VideoModel.shared.get()
-        fileUrl = URL(fileURLWithPath: path)
-        guard let fileUrl = fileUrl else {
+        guard let fileUrl = VideoModel.shared.getFileURL() else {
             return
         }
         let avAsset = AVURLAsset(url: fileUrl)
@@ -64,7 +61,10 @@ class ResultViewController: UIViewController {
     
     @IBAction func twitter(_ sender: Any) {
         if TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers() {// ログインしている時
-            let composer = TWTRComposerViewController(initialText: "#おしゃべりや", image: nil, videoURL: fileUrl)
+            guard let url = VideoModel.shared.getURL() else {
+                return
+            }
+            let composer = TWTRComposerViewController(initialText: "#おしゃべりや", image: nil, videoURL: url)
             present(composer, animated: true, completion: nil)
         } else {// ログインしていない時
             TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
@@ -82,8 +82,7 @@ class ResultViewController: UIViewController {
     
     // 動画をダウンロードして保存
     @IBAction func save(_ sender: Any) {
-        let path = VideoModel.shared.get()
-        guard let url = URL(string: path) else {
+        guard let url = VideoModel.shared.getURL() else {
             return
         }
         let request = URLRequest(url: url)

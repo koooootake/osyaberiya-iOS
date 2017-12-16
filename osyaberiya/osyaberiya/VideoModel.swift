@@ -21,10 +21,20 @@ class VideoModel: NSObject {
         self.filePath = filePath
     }
     
-    func get() -> String {
+    func getFileURL() -> URL? {
         guard let filePath = self.filePath else {
-            return ""
+            return nil
         }
-        return filePath
+        let url = URL(fileURLWithPath: filePath)
+        return url
+    }
+    
+    func getURL() -> URL? {
+        guard
+            let filePath = self.filePath,
+            let url = URL(string: filePath) else {
+            return nil
+        }
+        return url
     }
 }
