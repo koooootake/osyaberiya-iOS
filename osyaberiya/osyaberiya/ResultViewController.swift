@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import CoreMedia
 import Photos
+import TwitterKit
 
 class AVPlayerView: UIView {
     
@@ -62,12 +63,24 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func twitter(_ sender: Any) {
+        if TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers() {// ログインしている時
+            let composer = TWTRComposerViewController(initialText: "#おしゃべりや", image: nil, videoURL: fileUrl)
+            present(composer, animated: true, completion: nil)
+        } else {// ログインしていない時
+            TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
+                if (session != nil) {
+                    print("Success Twitter: ");
+                } else {
+                    print("Error Twitter: ");
+                }
+            })
+        }
     }
     
     @IBAction func facebook(_ sender: Any) {
     }
     
-    //動画をダウンロードして保存
+    // 動画をダウンロードして保存
     @IBAction func save(_ sender: Any) {
         let path = VideoModel.shared.get()
         guard let url = URL(string: path) else {
@@ -100,11 +113,9 @@ class ResultViewController: UIViewController {
                     print("Save video")
                 }
             }
-            
         })
         
         task.resume()
-        
     }
     
     func showAlert(title: String, message: String) {

@@ -34,7 +34,7 @@
                                     <action selector="sendText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qq4-JX-uTe"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sof-PE-9NE">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="こんばんは" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sof-PE-9NE">
                                 <rect key="frame" x="16" y="80" width="343" height="200"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
@@ -66,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="588" y="89.505247376311857"/>
+            <point key="canvasLocation" x="498" y="90"/>
         </scene>
         <!--Result View Controller-->
         <scene sceneID="WmY-Ol-Jru">
