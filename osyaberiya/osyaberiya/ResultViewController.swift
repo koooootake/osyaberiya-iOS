@@ -25,17 +25,15 @@ class AVPlayerView: UIView {
     }
 }
 
-class AVPlayerViewController: UIViewController {
+class ResultViewController: UIViewController {
     
     @IBOutlet weak var playerView: UIView!
     var playerItem : AVPlayerItem!
     var videoPlayer : AVPlayer!
 
     override func viewDidLoad() {
-        
-        guard let path = Bundle.main.path(forResource: "sample", ofType: "mp4") else {
-            return
-        }
+
+        let path = VideoModel.shared.get()
         let fileUrl = URL(fileURLWithPath: path)
         let avAsset = AVURLAsset(url: fileUrl)
  
@@ -52,4 +50,14 @@ class AVPlayerViewController: UIViewController {
 
         videoPlayer.play()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        videoPlayer.pause()
+    }
+    
+    @IBAction func close(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
