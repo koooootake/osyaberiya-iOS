@@ -36,6 +36,11 @@ class ViewController: UIViewController, UITextViewDelegate {
         self.view.bringSubview(toFront: indicator)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        textView.becomeFirstResponder()
+    }
+    
     func textViewDidChange(_ textView: UITextView) {
         countLabel.text = "\(textView.text.count)/99"
     }
