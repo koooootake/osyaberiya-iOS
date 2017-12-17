@@ -18,7 +18,6 @@ class ViewController: UIViewController, UITextViewDelegate {
     var text: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 204/255.0, blue: 102/255.0, alpha: 1.0)
         
         textView.textContainerInset = UIEdgeInsetsMake(20, 10, 20, 10)
         textView.sizeToFit()

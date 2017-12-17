@@ -36,7 +36,9 @@ class ResultViewController: UIViewController {
     let errorMessage = "@osyaberiyaまでお問い合わせください"
 
     override func viewDidLoad() {
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 219/255.0, green: 77/255.0, blue: 96/255.0, alpha: 1.0)
+        // ナビゲーションを透明にする処理
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         guard let fileUrl = VideoModel.shared.getFileURL() else {
             let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")
