@@ -9,21 +9,25 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.29.0):
     - FBSDKCoreKit
+  - FBSDKShareKit (4.29.0):
+    - FBSDKCoreKit
   - TwitterCore (3.1.0)
   - TwitterKit (3.3.0):
     - TwitterCore (>= 3.1.0)
 
 DEPENDENCIES:
   - FBSDKLoginKit
+  - FBSDKShareKit
   - TwitterKit
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: 6f139173dc63a1deaff4430a55f2fe5bb222d2af
   FBSDKLoginKit: 56a057ca6822535ea0faa25f57a7c41edb697fd4
+  FBSDKShareKit: 18a2cd118aef11dd657fe7e8b64bae5c719088b2
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: aa6c9ab9d12dc120021033e2317950b8802cbfb4
+PODFILE CHECKSUM: 923c3b8fce3165f3d28ed37e5a1be72fb1f74150
 
 COCOAPODS: 1.3.1

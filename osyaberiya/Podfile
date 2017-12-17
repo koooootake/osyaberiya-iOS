@@ -5,6 +5,7 @@ target 'osyaberiya' do
   use_frameworks!
   pod 'TwitterKit'
   pod 'FBSDKLoginKit'
+  pod 'FBSDKShareKit'
   # Pods for osyaberiya
 
 end

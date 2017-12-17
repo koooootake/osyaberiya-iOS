@@ -10,7 +10,9 @@ import UIKit
 import AVFoundation
 import CoreMedia
 import Photos
-import TwitterKit
+import FBSDKCoreKit
+import FBSDKLoginKit
+import FBSDKShareKit
 
 class AVPlayerView: UIView {
     
@@ -90,6 +92,30 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func facebook(_ sender: Any) {
+        //let content = FBSDKShareLinkContent()
+        if FBSDKAccessToken.current() != nil {// ログインしている時
+            let content = FBSDKShareLinkContent()
+            content.contentURL = fileUrl
+            FBSDKShareDialog.show(from: self, with: content, delegate: nil)
+
+        } else {// ログインしていない時
+            let loginManager = FBSDKLoginManager()
+            loginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+                if let error = error {
+                    print("Error : \(error)")
+                    return
+                }
+                if let result = result {
+                    if result.isCancelled {
+                        print("Cancell")
+                        return
+                    } else {
+                        print("Sucsess Login :")
+
+                    }
+                }
+            }
+        }
     }
     
     // 動画をダウンロードして保存
