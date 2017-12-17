@@ -83,13 +83,7 @@ class ResultViewController: UIViewController {
             let composer = TWTRComposerViewController(initialText: "#おしゃべりや", image: nil, videoURL: url)
             present(composer, animated: true, completion: nil)
         } else {// ログインしていない時
-            TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
-                if session != nil {
-                    print("Success Twitter: ");
-                } else {
-                    print("Error Twitter: ");
-                }
-            })
+            twitterLogin()
         }
     }
     
@@ -151,4 +145,17 @@ class ResultViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func twitterLogin(_ sender: Any) {
+        twitterLogin()
+    }
+    
+    func twitterLogin() {
+        TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
+            if session != nil {
+                print("Success Twitter: ");
+            } else {
+                print("Error Twitter: ");
+            }
+        })
+    }
 }
