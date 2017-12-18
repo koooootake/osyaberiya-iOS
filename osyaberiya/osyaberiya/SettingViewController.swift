@@ -21,7 +21,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableView.backgroundView = UIImageView(image: UIImage(named: "gray_bg"))
         tableView.backgroundView?.contentMode = .scaleAspectFill
-        tableView.tintColor = UIColor.white
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -34,6 +33,12 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return tableTitle[section][0]
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view:UIView, forSection: Int) {
+        if let headerTitle = view as? UITableViewHeaderFooterView {
+            headerTitle.textLabel?.textColor = UIColor.white
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
