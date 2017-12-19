@@ -70,8 +70,14 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     func textValidation() -> Bool {
         if textView.text.count < 1 || textView.text.count > 99 {
-            let alert = UIAlertController.show(title: "0 < 文字 < 100 に\nしてください", message: "")
-            self.present(alert, animated: true, completion: nil)
+            let alertController = UIAlertController(title: "0 < 文字 < 100 に\nしてください", message: "", preferredStyle: .alert)
+            let action = UIAlertAction(title: "おk", style: .default, handler: { _ in
+                DispatchQueue.main.async {
+                    self.textView.becomeFirstResponder()
+                }
+            })
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion:nil)
             return false
         }
         return true
