@@ -11,13 +11,15 @@ import Foundation
 class VideoModel: NSObject {
     
     static let shared = VideoModel()
+    var fileName: String?
     var filePath: String?
     
     private override init() {
         super.init()
     }
     
-    func set(filePath: String) {
+    func set(fileName:String, filePath: String) {
+        self.fileName = fileName
         self.filePath = filePath
     }
     

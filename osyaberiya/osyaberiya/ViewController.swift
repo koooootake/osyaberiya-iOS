@@ -126,7 +126,7 @@ class ViewController: UIViewController, UITextViewDelegate {
             let decoder: JSONDecoder = JSONDecoder()
             do {
                 let result: Result = try decoder.decode(Result.self, from: data)
-                VideoModel.shared.set(filePath: result.video_url)
+                VideoModel.shared.set(fileName: result.filename, filePath: result.video_url)
                 print("Sucsess session :",result)
                 
                 DispatchQueue.main.async {

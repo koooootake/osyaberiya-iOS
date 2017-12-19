@@ -48,14 +48,19 @@ class ResultViewController: UIViewController {
             return
         }
         let avAsset = AVURLAsset(url: fileUrl)
- 
         playerItem = AVPlayerItem(asset: avAsset)
         videoPlayer = AVPlayer(playerItem: playerItem)
         
+        playerView.alpha = 0.0
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         let videoPlayerView = AVPlayerView(frame: playerView.bounds)
         
         guard let layer = videoPlayerView.layer as? AVPlayerLayer else {
@@ -69,7 +74,12 @@ class ResultViewController: UIViewController {
         layer.cornerRadius = 10
         playerView.layer.addSublayer(layer)
         
-        videoPlayer.play()
+        //アニメーション
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseIn], animations: {
+            self.playerView.alpha = 1.0
+        }, completion: { _ in
+            self.videoPlayer.play()
+        })
     }
 
     @IBAction func replay(_ sender: Any) {
@@ -94,13 +104,36 @@ class ResultViewController: UIViewController {
     @IBAction func facebook(_ sender: Any) {
         //let content = FBSDKShareLinkContent()
         if FBSDKAccessToken.current() != nil {// ログインしている時
-            let content = FBSDKShareLinkContent()
-            content.contentURL = fileUrl
+            //最後に保存したVideoのassetURLを取得
+            let asset = self.getLastVideo()
+            guard let identifier = asset?.localIdentifier else {
+                let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: "")
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            let id = identifier.prefix(36)
+            let url = "assets-library://asset/asset.MOV?id=\(id)&ext=MOV"
+            print("url : \(url)")
+            let videoUrl = URL(string: url)
+            
+            //画像シェア
+            //let content = FBSDKSharePhotoContent()
+            //guard let photo = FBSDKSharePhoto(image: UIImage(named : "lip"), userGenerated: true) else {
+            //    return
+            //}
+            //content.photos = [photo]
+            
+            //ビデオシェア
+            let content = FBSDKShareVideoContent()
+            let video = FBSDKShareVideo(videoURL: videoUrl)
+            content.video = video
+            content.hashtag = FBSDKHashtag(string: "#おしゃべりや")
+           
             FBSDKShareDialog.show(from: self, with: content, delegate: nil)
 
         } else {// ログインしていない時
             let loginManager = FBSDKLoginManager()
-            loginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+            loginManager.logIn(withPublishPermissions: ["publish_actions"], from: self) { (result, error) in
                 if let error = error {
                     print("Error : \(error)")
                     return
@@ -154,13 +187,22 @@ class ResultViewController: UIViewController {
                 if saved {
                     let alert = UIAlertController.show(title: "動画を保存しました", message: "")
                     self.present(alert, animated: true, completion: nil)
-                    print("Sucsess save video")
+                    print("Sucsess save video : \(tmpUrl)")
+                
                 } else {
                     self.videoSaveErrorAlert()
                 }
             }
         })
         task.resume()
+    }
+    
+    private func getLastVideo() -> PHAsset? {
+        let assets: PHFetchResult = PHAsset.fetchAssets(with: .video, options: nil)
+        guard let asset = assets.lastObject else {
+            return nil
+        }
+        return asset
     }
     
     private func videoSaveErrorAlert() {
