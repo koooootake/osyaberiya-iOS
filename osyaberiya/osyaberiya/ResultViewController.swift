@@ -234,6 +234,10 @@ class ResultViewController: UIViewController {
         }, completion: { _ in
             
             self.dismiss(animated: true, completion: nil)
+            //同時押し対策
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.dismiss(animated: true, completion: nil)
+            }
         })
     }
 }
