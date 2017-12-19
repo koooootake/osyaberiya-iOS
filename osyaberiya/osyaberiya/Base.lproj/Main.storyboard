@@ -128,14 +128,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yellow_bg" translatesAutoresizingMaskIntoConstraints="NO" id="8BI-n6-JLE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvR-lI-XWc">
                                 <rect key="frame" x="16" y="80" width="343" height="193"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yvR-lI-XWc" secondAttribute="height" multiplier="640:360" id="u1K-18-BOt"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovi-uX-Vqo">
                                 <rect key="frame" x="16" y="80" width="343" height="193"/>
@@ -231,26 +234,22 @@
                             <constraint firstItem="e6z-OH-H1P" firstAttribute="trailing" secondItem="yvR-lI-XWc" secondAttribute="trailing" constant="16" id="82r-xb-upo"/>
                             <constraint firstItem="ovi-uX-Vqo" firstAttribute="top" secondItem="e6z-OH-H1P" secondAttribute="top" constant="16" id="Bc6-DK-EEU"/>
                             <constraint firstItem="yvR-lI-XWc" firstAttribute="top" secondItem="e6z-OH-H1P" secondAttribute="top" constant="16" id="FQO-tg-IgK"/>
-                            <constraint firstAttribute="bottom" secondItem="8BI-n6-JLE" secondAttribute="bottom" id="GnU-Sf-6LI"/>
-                            <constraint firstItem="8BI-n6-JLE" firstAttribute="top" secondItem="s8n-91-jhR" secondAttribute="top" id="NMU-EX-8DX"/>
                             <constraint firstItem="bxP-kr-f9Z" firstAttribute="centerY" secondItem="hlh-FW-bQB" secondAttribute="centerY" id="S5f-zP-M8e"/>
                             <constraint firstItem="bxP-kr-f9Z" firstAttribute="leading" secondItem="hlh-FW-bQB" secondAttribute="trailing" constant="16" id="SBh-vt-prG"/>
                             <constraint firstItem="e6z-OH-H1P" firstAttribute="trailing" secondItem="ovi-uX-Vqo" secondAttribute="trailing" constant="16" id="VYA-LL-IAZ"/>
-                            <constraint firstItem="8BI-n6-JLE" firstAttribute="leading" secondItem="s8n-91-jhR" secondAttribute="leading" id="Ybf-QC-n2W"/>
                             <constraint firstItem="g9Q-8G-C0Q" firstAttribute="centerY" secondItem="hlh-FW-bQB" secondAttribute="centerY" id="aYG-ty-Net"/>
                             <constraint firstItem="yvR-lI-XWc" firstAttribute="leading" secondItem="e6z-OH-H1P" secondAttribute="leading" constant="16" id="cdP-2p-aMZ"/>
                             <constraint firstItem="g9Q-8G-C0Q" firstAttribute="leading" secondItem="bxP-kr-f9Z" secondAttribute="trailing" constant="16" id="gbl-mc-vag"/>
                             <constraint firstItem="V8K-94-3hK" firstAttribute="centerX" secondItem="s8n-91-jhR" secondAttribute="centerX" id="iqg-G3-lfX"/>
                             <constraint firstItem="bxP-kr-f9Z" firstAttribute="centerX" secondItem="s8n-91-jhR" secondAttribute="centerX" id="lFA-Lr-pr4"/>
                             <constraint firstItem="bxP-kr-f9Z" firstAttribute="top" secondItem="yvR-lI-XWc" secondAttribute="bottom" constant="16" id="lbv-e1-dnw"/>
-                            <constraint firstAttribute="trailing" secondItem="8BI-n6-JLE" secondAttribute="trailing" id="oHA-T4-bE5"/>
                             <constraint firstItem="V8K-94-3hK" firstAttribute="top" secondItem="bxP-kr-f9Z" secondAttribute="bottom" constant="16" id="w1l-RR-26n"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e6z-OH-H1P"/>
                     </view>
                     <navigationItem key="navigationItem" id="2uN-zN-Eat">
                         <barButtonItem key="backBarButtonItem" title="もどる" id="ogU-zU-Hja"/>
-                        <barButtonItem key="rightBarButtonItem" title=" " style="plain" id="rb8-S1-64F">
+                        <barButtonItem key="rightBarButtonItem" title="せってい" style="plain" id="rb8-S1-64F">
                             <connections>
                                 <segue destination="563-Nu-O2S" kind="show" id="mhU-1N-fZh"/>
                             </connections>
@@ -261,6 +260,7 @@
                         <outlet property="facebookButton" destination="bxP-kr-f9Z" id="JzT-8V-eH0"/>
                         <outlet property="playerView" destination="yvR-lI-XWc" id="cCh-uj-2BO"/>
                         <outlet property="saveButton" destination="g9Q-8G-C0Q" id="Y50-33-qwG"/>
+                        <outlet property="settingButton" destination="rb8-S1-64F" id="2qh-dQ-dhc"/>
                         <outlet property="twitterButton" destination="hlh-FW-bQB" id="OGE-AQ-UcQ"/>
                     </connections>
                 </viewController>
@@ -339,6 +339,5 @@
         <image name="pink_bg" width="2048" height="2732"/>
         <image name="save" width="32" height="32"/>
         <image name="twi" width="32" height="32"/>
-        <image name="yellow_bg" width="2048" height="2732"/>
     </resources>
 </document>

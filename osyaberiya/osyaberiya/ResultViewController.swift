@@ -36,6 +36,7 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var settingButton: UIBarButtonItem!
     
     var playerItem: AVPlayerItem!
     var videoPlayer: AVPlayer!
@@ -63,6 +64,7 @@ class ResultViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.clear
         self.view.alpha = 0.0
+        settingButton.tintColor = UIColor.clear
     }
     
     override func viewDidLayoutSubviews() {
@@ -90,6 +92,7 @@ class ResultViewController: UIViewController {
         //アニメーション
         UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseIn], animations: {
             self.view.alpha = 1.0
+            self.settingButton.tintColor = UIColor.white
         }, completion: { _ in
             self.videoPlayer.play()
         })
@@ -227,6 +230,7 @@ class ResultViewController: UIViewController {
         //アニメーション
         UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseIn], animations: {
             self.view.alpha = 0.0
+            self.settingButton.tintColor = UIColor.clear
         }, completion: { _ in
             
             self.dismiss(animated: true, completion: nil)
