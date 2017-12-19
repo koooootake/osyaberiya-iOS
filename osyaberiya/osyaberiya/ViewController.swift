@@ -85,16 +85,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func sendText(_ sender: Any) {
         textView.resignFirstResponder()
-        //アニメーション
-        osyaberiButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-        UIView.animate(withDuration: 1.0,
-                       delay: 0,
-                       usingSpringWithDamping: 0.15,
-                       initialSpringVelocity: 5.0,
-                       options: .allowUserInteraction,
-                       animations: {
-                        self.osyaberiButton.transform = .identity
-        }, completion: nil)
+        LayoutModel.buttonAnimation(button: osyaberiButton)
         
         if !textValidation() {
             return

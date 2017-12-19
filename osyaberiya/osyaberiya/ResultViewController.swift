@@ -49,7 +49,6 @@ class ResultViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
         LayoutModel.dropShadow(view: twitterButton)
-        LayoutModel.dropShadow(view: facebookButton)
         LayoutModel.dropShadow(view: saveButton)
         LayoutModel.dropShadow(view: closeButton)
         
@@ -169,6 +168,8 @@ class ResultViewController: UIViewController {
     
     // 動画をダウンロードして保存
     @IBAction func save(_ sender: Any) {
+        LayoutModel.buttonAnimation(button: saveButton)
+        
         guard let url = VideoModel.shared.getURL() else {
             let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")
             self.present(alert, animated: true, completion: nil)
