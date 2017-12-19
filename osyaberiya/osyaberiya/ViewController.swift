@@ -15,6 +15,9 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var osyaberiButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
+    
     var text: String?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,9 @@ class ViewController: UIViewController, UITextViewDelegate {
         textView.returnKeyType = .done
         textView.delegate = self
         countLabel.text = "\(textView.text.count)/99"
+        
+        LayoutModel.dropShadow(view: osyaberiButton)
+        LayoutModel.dropShadow(view: clearButton)
         
         //くるくる設定
         indicator.activityIndicatorViewStyle = .whiteLarge

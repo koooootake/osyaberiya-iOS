@@ -19,6 +19,7 @@
 		46A428201FE57895005034C4 /* UIAlertController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4281F1FE57895005034C4 /* UIAlertController+extension.swift */; };
 		46A428221FE68910005034C4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A428211FE68910005034C4 /* SettingViewController.swift */; };
 		46A428241FE69171005034C4 /* TwitterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A428231FE69171005034C4 /* TwitterModel.swift */; };
+		46CEFB591FE9502B0039AA78 /* LayoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CEFB581FE9502B0039AA78 /* LayoutModel.swift */; };
 		AA4AD5209BE46BCA83B33A3F /* Pods_osyaberiya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C098AE4288AF92030FF695C9 /* Pods_osyaberiya.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		46A4281F1FE57895005034C4 /* UIAlertController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+extension.swift"; sourceTree = "<group>"; };
 		46A428211FE68910005034C4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		46A428231FE69171005034C4 /* TwitterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterModel.swift; sourceTree = "<group>"; };
+		46CEFB581FE9502B0039AA78 /* LayoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutModel.swift; sourceTree = "<group>"; };
 		C098AE4288AF92030FF695C9 /* Pods_osyaberiya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_osyaberiya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E473DD01AD0C9AD8B95EAB03 /* Pods-osyaberiya.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-osyaberiya.debug.xcconfig"; path = "Pods/Target Support Files/Pods-osyaberiya/Pods-osyaberiya.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +86,7 @@
 				465A368D1FE503E400C25BE7 /* ResultViewController.swift */,
 				46A428211FE68910005034C4 /* SettingViewController.swift */,
 				46A4281F1FE57895005034C4 /* UIAlertController+extension.swift */,
+				46CEFB581FE9502B0039AA78 /* LayoutModel.swift */,
 				465A36951FE51FFF00C25BE7 /* VideoModel.swift */,
 				46A428231FE69171005034C4 /* TwitterModel.swift */,
 				461959351FE4F0E400E5D763 /* Main.storyboard */,
@@ -260,6 +263,7 @@
 				46A428201FE57895005034C4 /* UIAlertController+extension.swift in Sources */,
 				461959341FE4F0E400E5D763 /* ViewController.swift in Sources */,
 				46A428241FE69171005034C4 /* TwitterModel.swift in Sources */,
+				46CEFB591FE9502B0039AA78 /* LayoutModel.swift in Sources */,
 				465A368E1FE503E400C25BE7 /* ResultViewController.swift in Sources */,
 				461959321FE4F0E400E5D763 /* AppDelegate.swift in Sources */,
 				465A36961FE51FFF00C25BE7 /* VideoModel.swift in Sources */,

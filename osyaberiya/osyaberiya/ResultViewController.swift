@@ -32,6 +32,11 @@ class AVPlayerView: UIView {
 class ResultViewController: UIViewController {
     
     @IBOutlet weak var playerView: UIView!
+    @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
+    
     var playerItem: AVPlayerItem!
     var videoPlayer: AVPlayer!
     var fileUrl: URL?
@@ -41,6 +46,11 @@ class ResultViewController: UIViewController {
         // ナビゲーションを透明にする処理
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+        LayoutModel.dropShadow(view: twitterButton)
+        LayoutModel.dropShadow(view: facebookButton)
+        LayoutModel.dropShadow(view: saveButton)
+        LayoutModel.dropShadow(view: closeButton)
         
         guard let fileUrl = VideoModel.shared.getFileURL() else {
             let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")

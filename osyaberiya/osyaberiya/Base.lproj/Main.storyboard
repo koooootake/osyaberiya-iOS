@@ -42,6 +42,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="osyaberiButton:" destination="dwS-zp-YLs" eventType="touchUpInside" id="fqk-Wy-gUu"/>
                                     <action selector="sendText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qq4-JX-uTe"/>
                                 </connections>
                             </button>
@@ -108,11 +109,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="hhY-yb-5a1"/>
                     <connections>
+                        <outlet property="clearButton" destination="alW-KN-YFb" id="ZdB-05-pcy"/>
                         <outlet property="countLabel" destination="JIs-af-mKx" id="ldi-7e-cvd"/>
+                        <outlet property="osyaberiButton" destination="OWQ-xB-keo" id="C1S-z3-QDl"/>
                         <outlet property="textView" destination="sof-PE-9NE" id="uJY-s5-zPf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="dwS-zp-YLs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="498" y="90"/>
         </scene>
@@ -254,7 +258,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="closeButton" destination="V8K-94-3hK" id="8Dv-Hd-Fpl"/>
+                        <outlet property="facebookButton" destination="bxP-kr-f9Z" id="JzT-8V-eH0"/>
                         <outlet property="playerView" destination="yvR-lI-XWc" id="cCh-uj-2BO"/>
+                        <outlet property="saveButton" destination="g9Q-8G-C0Q" id="Y50-33-qwG"/>
+                        <outlet property="twitterButton" destination="hlh-FW-bQB" id="OGE-AQ-UcQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxV-KS-euK" userLabel="First Responder" sceneMemberID="firstResponder"/>
