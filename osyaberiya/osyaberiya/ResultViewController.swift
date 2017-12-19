@@ -61,7 +61,8 @@ class ResultViewController: UIViewController {
         playerItem = AVPlayerItem(asset: avAsset)
         videoPlayer = AVPlayer(playerItem: playerItem)
         
-        playerView.alpha = 0.0
+        self.view.backgroundColor = UIColor.clear
+        self.view.alpha = 0.0
     }
     
     override func viewDidLayoutSubviews() {
@@ -82,11 +83,13 @@ class ResultViewController: UIViewController {
         layer.player = videoPlayer
         layer.masksToBounds = true
         layer.cornerRadius = 10
+        layer.borderWidth = 2.0
+        layer.borderColor = UIColor.white.cgColor
         playerView.layer.addSublayer(layer)
         
         //アニメーション
         UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseIn], animations: {
-            self.playerView.alpha = 1.0
+            self.view.alpha = 1.0
         }, completion: { _ in
             self.videoPlayer.play()
         })
@@ -221,6 +224,12 @@ class ResultViewController: UIViewController {
     }
 
     @IBAction func close(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        //アニメーション
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseIn], animations: {
+            self.view.alpha = 0.0
+        }, completion: { _ in
+            
+            self.dismiss(animated: true, completion: nil)
+        })
     }
 }

@@ -85,6 +85,16 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func sendText(_ sender: Any) {
         textView.resignFirstResponder()
+        //アニメーション
+        osyaberiButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        UIView.animate(withDuration: 1.0,
+                       delay: 0,
+                       usingSpringWithDamping: 0.15,
+                       initialSpringVelocity: 5.0,
+                       options: .allowUserInteraction,
+                       animations: {
+                        self.osyaberiButton.transform = .identity
+        }, completion: nil)
         
         if !textValidation() {
             return
@@ -119,6 +129,7 @@ class ViewController: UIViewController, UITextViewDelegate {
             //くるくるstop
             DispatchQueue.main.async {
                 self.indicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
             
             if let error = error {
@@ -158,6 +169,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         task.resume()
         //くるくるstart
         indicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
     }
     
     @IBAction func clearText(_ sender: Any) {

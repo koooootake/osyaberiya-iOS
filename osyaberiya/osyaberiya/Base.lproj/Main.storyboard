@@ -123,7 +123,7 @@
         <!--Result View Controller-->
         <scene sceneID="WmY-Ol-Jru">
             <objects>
-                <viewController id="Ouw-7y-EmN" customClass="ResultViewController" customModule="osyaberiya" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="Ouw-7y-EmN" customClass="ResultViewController" customModule="osyaberiya" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s8n-91-jhR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -226,7 +226,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ovi-uX-Vqo" firstAttribute="leading" secondItem="e6z-OH-H1P" secondAttribute="leading" constant="16" id="4dO-RD-ps0"/>
                             <constraint firstItem="e6z-OH-H1P" firstAttribute="trailing" secondItem="yvR-lI-XWc" secondAttribute="trailing" constant="16" id="82r-xb-upo"/>
@@ -251,7 +250,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="2uN-zN-Eat">
                         <barButtonItem key="backBarButtonItem" title="もどる" id="ogU-zU-Hja"/>
-                        <barButtonItem key="rightBarButtonItem" title="せってい" style="plain" id="rb8-S1-64F">
+                        <barButtonItem key="rightBarButtonItem" title=" " style="plain" id="rb8-S1-64F">
                             <connections>
                                 <segue destination="563-Nu-O2S" kind="show" id="mhU-1N-fZh"/>
                             </connections>
@@ -316,7 +315,7 @@
         <!--Navigation Controller-->
         <scene sceneID="o68-yx-XmK">
             <objects>
-                <navigationController storyboardIdentifier="ResultViewController" automaticallyAdjustsScrollViewInsets="NO" id="9Lj-tV-G8d" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ResultViewController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overCurrentContext" id="9Lj-tV-G8d" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="W7C-Dg-bmO">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
