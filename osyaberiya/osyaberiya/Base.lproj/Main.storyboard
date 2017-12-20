@@ -248,8 +248,8 @@
                         <viewLayoutGuide key="safeArea" id="e6z-OH-H1P"/>
                     </view>
                     <navigationItem key="navigationItem" id="2uN-zN-Eat">
-                        <barButtonItem key="backBarButtonItem" title="もどる" id="ogU-zU-Hja"/>
-                        <barButtonItem key="rightBarButtonItem" title="せってい" style="plain" id="rb8-S1-64F">
+                        <barButtonItem key="backBarButtonItem" title="もどる" style="done" id="ogU-zU-Hja"/>
+                        <barButtonItem key="rightBarButtonItem" title="せってい" style="done" id="rb8-S1-64F">
                             <connections>
                                 <segue destination="563-Nu-O2S" kind="show" id="mhU-1N-fZh"/>
                             </connections>
