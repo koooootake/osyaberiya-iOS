@@ -123,11 +123,14 @@
         <!--Result View Controller-->
         <scene sceneID="WmY-Ol-Jru">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="Ouw-7y-EmN" customClass="ResultViewController" customModule="osyaberiya" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ouw-7y-EmN" customClass="ResultViewController" customModule="osyaberiya" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s8n-91-jhR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pink_bg" translatesAutoresizingMaskIntoConstraints="NO" id="RDw-fA-jQN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvR-lI-XWc">
                                 <rect key="frame" x="16" y="80" width="343" height="193"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -230,13 +233,17 @@
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="RDw-fA-jQN" firstAttribute="top" secondItem="s8n-91-jhR" secondAttribute="top" id="2Xj-Hg-UAd"/>
                             <constraint firstItem="ovi-uX-Vqo" firstAttribute="leading" secondItem="e6z-OH-H1P" secondAttribute="leading" constant="16" id="4dO-RD-ps0"/>
                             <constraint firstItem="e6z-OH-H1P" firstAttribute="trailing" secondItem="yvR-lI-XWc" secondAttribute="trailing" constant="16" id="82r-xb-upo"/>
                             <constraint firstItem="ovi-uX-Vqo" firstAttribute="top" secondItem="e6z-OH-H1P" secondAttribute="top" constant="16" id="Bc6-DK-EEU"/>
                             <constraint firstItem="yvR-lI-XWc" firstAttribute="top" secondItem="e6z-OH-H1P" secondAttribute="top" constant="16" id="FQO-tg-IgK"/>
+                            <constraint firstAttribute="bottom" secondItem="RDw-fA-jQN" secondAttribute="bottom" id="Mlv-Yk-bqz"/>
+                            <constraint firstItem="RDw-fA-jQN" firstAttribute="leading" secondItem="s8n-91-jhR" secondAttribute="leading" id="Ny2-De-CZ6"/>
                             <constraint firstItem="bxP-kr-f9Z" firstAttribute="centerY" secondItem="hlh-FW-bQB" secondAttribute="centerY" id="S5f-zP-M8e"/>
                             <constraint firstItem="bxP-kr-f9Z" firstAttribute="leading" secondItem="hlh-FW-bQB" secondAttribute="trailing" constant="16" id="SBh-vt-prG"/>
                             <constraint firstItem="e6z-OH-H1P" firstAttribute="trailing" secondItem="ovi-uX-Vqo" secondAttribute="trailing" constant="16" id="VYA-LL-IAZ"/>
+                            <constraint firstAttribute="trailing" secondItem="RDw-fA-jQN" secondAttribute="trailing" id="XD7-hJ-2to"/>
                             <constraint firstItem="g9Q-8G-C0Q" firstAttribute="centerY" secondItem="hlh-FW-bQB" secondAttribute="centerY" id="aYG-ty-Net"/>
                             <constraint firstItem="yvR-lI-XWc" firstAttribute="leading" secondItem="e6z-OH-H1P" secondAttribute="leading" constant="16" id="cdP-2p-aMZ"/>
                             <constraint firstItem="g9Q-8G-C0Q" firstAttribute="leading" secondItem="bxP-kr-f9Z" secondAttribute="trailing" constant="16" id="gbl-mc-vag"/>
