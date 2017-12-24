@@ -49,6 +49,7 @@ class ResultViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
         LayoutModel.dropShadow(view: twitterButton)
+        LayoutModel.dropShadow(view: facebookButton)
         LayoutModel.dropShadow(view: saveButton)
         LayoutModel.dropShadow(view: closeButton)
         
@@ -117,32 +118,27 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func facebook(_ sender: Any) {
-        //let content = FBSDKShareLinkContent()
         if FBSDKAccessToken.current() != nil {// ログインしている時
             //最後に保存したVideoのassetURLを取得
             let asset = self.getLastVideo()
             guard let identifier = asset?.localIdentifier else {
-                let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: "")
+                let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: errorMessage)
                 self.present(alert, animated: true, completion: nil)
                 return
             }
             let id = identifier.prefix(36)
-            let url = "assets-library://asset/asset.MOV?id=\(id)&ext=MOV"
+            let url = "assets-library://asset/asset.MP4?id=\(id)&ext=MP4"
             print("url : \(url)")
             let videoUrl = URL(string: url)
             
-            //画像シェア
-            //let content = FBSDKSharePhotoContent()
-            //guard let photo = FBSDKSharePhoto(image: UIImage(named : "lip"), userGenerated: true) else {
-            //    return
-            //}
-            //content.photos = [photo]
-            
             //ビデオシェア
             let content = FBSDKShareVideoContent()
-            let video = FBSDKShareVideo(videoURL: videoUrl)
+            guard let video = FBSDKShareVideo(videoURL: videoUrl) else {
+                let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: errorMessage)
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
             content.video = video
-            content.hashtag = FBSDKHashtag(string: "#おしゃべりや")
            
             FBSDKShareDialog.show(from: self, with: content, delegate: nil)
 
@@ -194,7 +190,8 @@ class ResultViewController: UIViewController {
                 return
             }
 
-            let tmpSearchPath = searchPath + "/tmp.mp4"
+            let name = VideoModel.shared.fileName
+            let tmpSearchPath = searchPath + "/\(name ?? "tmp").mp4"
             let tmpUrl = URL(fileURLWithPath: tmpSearchPath)
             try? data.write(to: tmpUrl)
             
