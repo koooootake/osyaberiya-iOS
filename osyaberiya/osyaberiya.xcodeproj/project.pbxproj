@@ -129,6 +129,7 @@
 				4619592C1FE4F0E400E5D763 /* Resources */,
 				C5F29F1542EA3FA6A70ADA18 /* [CP] Embed Pods Frameworks */,
 				8C6700C9DF41678313B81ADA /* [CP] Copy Pods Resources */,
+				464D47FC1FF2A288004226D1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -205,6 +206,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		464D47FC1FF2A288004226D1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run f608d0f8cbb4818b0241a74b28d53513df83e887 258cdb4e998f931878159f18d2c4b15d2bed4829fe8750b178502944fe294b86";
 		};
 		8C6700C9DF41678313B81ADA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -402,6 +416,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = R3L8QANSY7;
 				INFOPLIST_FILE = osyaberiya/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -423,6 +438,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = R3L8QANSY7;
 				INFOPLIST_FILE = osyaberiya/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

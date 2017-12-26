@@ -6,6 +6,7 @@ target 'osyaberiya' do
   pod 'TwitterKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
+  pod 'Fabric'
+  pod 'Crashlytics'
   # Pods for osyaberiya
-
 end
