@@ -12,7 +12,7 @@ extension UIAlertController {
     
     static func show(title: String, message: String) -> UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "おk", style: .default, handler: nil)
+        let action = UIAlertAction(title: UtilModel.okMessage, style: .default, handler: nil)
         alertController.addAction(action)
         return alertController
     }

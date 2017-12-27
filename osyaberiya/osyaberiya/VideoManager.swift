@@ -8,9 +8,9 @@
 
 import Foundation
 
-class VideoModel: NSObject {
+class VideoManager: NSObject {
     
-    static let shared = VideoModel()
+    static let shared = VideoManager()
     var fileName: String?
     var filePath: String?
     

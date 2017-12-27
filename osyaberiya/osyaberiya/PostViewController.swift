@@ -8,10 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextViewDelegate {
+class PostViewController: UIViewController {
     
     let indicator = UIActivityIndicatorView()
-    let errorMessage = "@osyaberiyaまでお問い合わせください"
     
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
@@ -19,20 +18,23 @@ class ViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var clearButton: UIButton!
     
     var text: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //テキストViewレイアウト
         textView.textContainerInset = UIEdgeInsetsMake(20, 10, 20, 10)
         textView.sizeToFit()
         textView.text = "おしゃべりやです"
         textView.returnKeyType = .done
         textView.delegate = self
-        countLabel.text = "\(textView.text.count)/99"
+        countLabel.text = "\(textView.text.count)/\(UtilModel.maxTextCount)"
         
-        LayoutModel.dropShadow(view: osyaberiButton)
-        LayoutModel.dropShadow(view: clearButton)
+        //ボタンレイアウト
+        LayoutViewModel.dropShadow(view: osyaberiButton)
+        LayoutViewModel.dropShadow(view: clearButton)
         
-        //くるくる設定
+        //くるくるレイアウト
         indicator.activityIndicatorViewStyle = .whiteLarge
         indicator.center = self.view.center
         indicator.color = UIColor.white
@@ -43,35 +45,14 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        //キーボード立ち上げ
         textView.becomeFirstResponder()
     }
-    
-    func textViewDidChange(_ textView: UITextView) {
-        countLabel.text = "\(textView.text.count)/99"
-    }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let text = textView.text + string
-        if text.count > 99 {
-            return false
-        }
-        return true
-    }
-    
-    //改行とじる
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange,
-                  replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
-    }
-    
+
     func textValidation() -> Bool {
-        if textView.text.count < 1 || textView.text.count > 99 {
-            let alertController = UIAlertController(title: "0 < 文字 < 100 に\nしてください", message: "", preferredStyle: .alert)
-            let action = UIAlertAction(title: "おk", style: .default, handler: { _ in
+        if textView.text.count < 1 || textView.text.count > UtilModel.maxTextCount {
+            let alertController = UIAlertController(title: "0 < 文字 < 100", message: "にしてください🙏", preferredStyle: .alert)
+            let action = UIAlertAction(title: UtilModel.okMessage, style: .default, handler: { _ in
                 DispatchQueue.main.async {
                     self.textView.becomeFirstResponder()
                 }
@@ -84,21 +65,25 @@ class ViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func sendText(_ sender: Any) {
+        //キーボードを閉じる
         textView.resignFirstResponder()
-        LayoutModel.buttonAnimation(button: osyaberiButton)
         
-        if !textValidation() {
+        LayoutViewModel.buttonAnimation(button: osyaberiButton)
+        
+        guard textValidation() else {
             return
         }
         
-        let inputText = textView.text
-        
+        post(text: textView.text)
+    }
+    
+    private func post(text: String) {
         let param = [
-            "input" : inputText
+            "input" : text
         ]
         
         guard let url = URL(string: "http://osyaberiya.com/generate") else {
-            let alert = UIAlertController.show(title: "URLが無効です", message: errorMessage)
+            let alert = UIAlertController.show(title: "URLが無効です", message: UtilModel.contactMessage)
             self.present(alert, animated: true, completion: nil)
             print("Error URL")
             return
@@ -109,7 +94,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: param, options: .prettyPrinted)
         } catch {
-            let alert = UIAlertController.show(title: "テキストが無効です", message: errorMessage)
+            let alert = UIAlertController.show(title: "テキストが無効です", message: UtilModel.contactMessage)
             self.present(alert, animated: true, completion: nil)
             print("Error JSONSerialization : ", error.localizedDescription)
             return
@@ -131,7 +116,7 @@ class ViewController: UIViewController, UITextViewDelegate {
             }
             
             guard let data = data else {
-                let alert = UIAlertController.show(title: "動画の生成に失敗しました", message: "繰り返し失敗する場合は\n\(self.errorMessage)")
+                let alert = UIAlertController.show(title: "動画の生成に失敗しました", message: "繰り返し失敗する場合は\n\(UtilModel.contactMessage)")
                 self.present(alert, animated: true, completion: nil)
                 print("Error data")
                 return
@@ -140,7 +125,7 @@ class ViewController: UIViewController, UITextViewDelegate {
             let decoder: JSONDecoder = JSONDecoder()
             do {
                 let result: Result = try decoder.decode(Result.self, from: data)
-                VideoModel.shared.set(fileName: result.filename, filePath: result.video_url)
+                VideoManager.shared.set(fileName: result.filename, filePath: result.video_url)
                 print("Sucsess session :",result)
                 
                 DispatchQueue.main.async {
@@ -151,7 +136,7 @@ class ViewController: UIViewController, UITextViewDelegate {
                 }
                 
             } catch {
-                let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: "繰り返し失敗する場合は\n\(self.errorMessage)")
+                let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: "繰り返し失敗する場合は\n\(UtilModel.contactMessage)")
                 self.present(alert, animated: true, completion: nil)
                 print("Error decode")
             }
@@ -165,9 +150,34 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func clearText(_ sender: Any) {
         textView.text = ""
-        countLabel.text = "\(textView.text.count)/99"
+        countLabel.text = "\(textView.text.count)/\(UtilModel.maxTextCount)"
     }
     
+}
+
+extension PostViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        countLabel.text = "\(textView.text.count)/\(UtilModel.maxTextCount)"
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let text = textView.text + string
+        if text.count > UtilModel.maxTextCount {
+            return false
+        }
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange,
+                  replacementText text: String) -> Bool {
+        //改行とじる
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
 }
 
 struct Result: Codable {

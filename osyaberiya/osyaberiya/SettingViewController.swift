@@ -55,9 +55,9 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 0:
             switch indexPath.row {
             case 0:
-                TwitterModel.login()
+                TwitterViewModel.login()
             case 1:
-                let str = TwitterModel.logout()
+                let str = TwitterViewModel.logout()
                 let alert: UIAlertController
                 if str != "" {
                     alert = UIAlertController.show(title: "ログアウトしました", message: "\(str)")

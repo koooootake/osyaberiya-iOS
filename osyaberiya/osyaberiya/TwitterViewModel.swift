@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TwitterModel: NSObject {
+class TwitterViewModel: NSObject {
     
     static func login() {
         TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in

@@ -41,19 +41,18 @@ class ResultViewController: UIViewController {
     var playerItem: AVPlayerItem!
     var videoPlayer: AVPlayer!
     var fileUrl: URL?
-    let errorMessage = "@osyaberiyaまでお問い合わせください"
     
     override func viewDidLoad() {
         // ナビゲーションを透明にする処理
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
-        LayoutModel.dropShadow(view: twitterButton)
-        LayoutModel.dropShadow(view: facebookButton)
-        LayoutModel.dropShadow(view: saveButton)
-        LayoutModel.dropShadow(view: closeButton)
+        LayoutViewModel.dropShadow(view: twitterButton)
+        LayoutViewModel.dropShadow(view: facebookButton)
+        LayoutViewModel.dropShadow(view: saveButton)
+        LayoutViewModel.dropShadow(view: closeButton)
         
-        guard let fileUrl = VideoModel.shared.getFileURL() else {
+        guard let fileUrl = VideoManager.shared.getFileURL() else {
             let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")
             self.present(alert, animated: true, completion: nil)
             return
@@ -105,7 +104,7 @@ class ResultViewController: UIViewController {
     
     @IBAction func twitter(_ sender: Any) {
         if TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers() {// ログインしている時
-            guard let url = VideoModel.shared.getURL() else {
+            guard let url = VideoManager.shared.getURL() else {
                 let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")
                 self.present(alert, animated: true, completion: nil)
                 return
@@ -113,7 +112,7 @@ class ResultViewController: UIViewController {
             let composer = TWTRComposerViewController(initialText: "#おしゃべりや", image: nil, videoURL: url)
             present(composer, animated: true, completion: nil)
         } else {// ログインしていない時
-            TwitterModel.login()
+            TwitterViewModel.login()
         }
     }
     
@@ -148,7 +147,7 @@ class ResultViewController: UIViewController {
         //最後に保存したVideoのassetURLを取得
         let asset = self.getLastVideo()
         guard let identifier = asset?.localIdentifier else {
-            let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: errorMessage)
+            let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: UtilModel.contactMessage)
             self.present(alert, animated: true, completion: nil)
             return
         }
@@ -160,7 +159,7 @@ class ResultViewController: UIViewController {
         //ビデオシェア
         let content = FBSDKShareVideoContent()
         guard let video = FBSDKShareVideo(videoURL: videoUrl) else {
-            let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: errorMessage)
+            let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: UtilModel.contactMessage)
             self.present(alert, animated: true, completion: nil)
             return
         }
@@ -171,7 +170,7 @@ class ResultViewController: UIViewController {
     }
     // 動画をダウンロードして保存
     @IBAction func save(_ sender: Any) {
-        LayoutModel.buttonAnimation(button: saveButton)
+        LayoutViewModel.buttonAnimation(button: saveButton)
         saveVideo(completion: { isSucsess in
             if isSucsess {
                 let alert = UIAlertController.show(title: "動画を保存しました", message: "")
@@ -187,7 +186,7 @@ class ResultViewController: UIViewController {
             return
         }
         
-        guard let url = VideoModel.shared.getURL() else {
+        guard let url = VideoManager.shared.getURL() else {
             let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")
             self.present(alert, animated: true, completion: nil)
             completion(false)
@@ -214,7 +213,7 @@ class ResultViewController: UIViewController {
                     return
             }
             
-            let name = VideoModel.shared.fileName
+            let name = VideoManager.shared.fileName
             let tmpSearchPath = searchPath + "/\(name ?? "tmp")"
             let tmpUrl = URL(fileURLWithPath: tmpSearchPath)
             try? data.write(to: tmpUrl)
@@ -245,7 +244,7 @@ class ResultViewController: UIViewController {
     }
     
     private func videoSaveErrorAlert() {
-        let alert = UIAlertController.show(title: "動画の保存に失敗しました", message: "繰り返し失敗する場合は\n\(self.errorMessage)")
+        let alert = UIAlertController.show(title: "動画の保存に失敗しました", message: "繰り返し失敗する場合は\n\(UtilModel.contactMessage)")
         self.present(alert, animated: true, completion: nil)
     }
     
