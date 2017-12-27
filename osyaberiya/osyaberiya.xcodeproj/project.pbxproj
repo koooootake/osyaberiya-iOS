@@ -14,7 +14,6 @@
 		465A368E1FE503E400C25BE7 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465A368D1FE503E400C25BE7 /* ResultViewController.swift */; };
 		465A36901FE5062D00C25BE7 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 465A368F1FE5062C00C25BE7 /* AVKit.framework */; };
 		465A36921FE5063200C25BE7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 465A36911FE5063200C25BE7 /* AVFoundation.framework */; };
-		465A36941FE509C500C25BE7 /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 465A36931FE509C400C25BE7 /* sample.mp4 */; };
 		465A36961FE51FFF00C25BE7 /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465A36951FE51FFF00C25BE7 /* VideoModel.swift */; };
 		46A428201FE57895005034C4 /* UIAlertController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4281F1FE57895005034C4 /* UIAlertController+extension.swift */; };
 		46A428221FE68910005034C4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A428211FE68910005034C4 /* SettingViewController.swift */; };
@@ -34,7 +33,6 @@
 		465A368D1FE503E400C25BE7 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		465A368F1FE5062C00C25BE7 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		465A36911FE5063200C25BE7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		465A36931FE509C400C25BE7 /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
 		465A36951FE51FFF00C25BE7 /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		465A36981FE5431B00C25BE7 /* osyaberiya-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "osyaberiya-Bridging-Header.h"; sourceTree = "<group>"; };
 		46A4281F1FE57895005034C4 /* UIAlertController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+extension.swift"; sourceTree = "<group>"; };
@@ -66,7 +64,6 @@
 				4619592F1FE4F0E400E5D763 /* Products */,
 				9B11BCE5696000FA612ECD70 /* Pods */,
 				7C833DC5A7EC3B1F573DBC00 /* Frameworks */,
-				465A36981FE5431B00C25BE7 /* osyaberiya-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +78,7 @@
 		461959301FE4F0E400E5D763 /* osyaberiya */ = {
 			isa = PBXGroup;
 			children = (
+				465A36981FE5431B00C25BE7 /* osyaberiya-Bridging-Header.h */,
 				461959311FE4F0E400E5D763 /* AppDelegate.swift */,
 				461959331FE4F0E400E5D763 /* ViewController.swift */,
 				465A368D1FE503E400C25BE7 /* ResultViewController.swift */,
@@ -91,7 +89,6 @@
 				46A428231FE69171005034C4 /* TwitterModel.swift */,
 				461959351FE4F0E400E5D763 /* Main.storyboard */,
 				461959381FE4F0E400E5D763 /* Assets.xcassets */,
-				465A36931FE509C400C25BE7 /* sample.mp4 */,
 				4619593D1FE4F0E400E5D763 /* Info.plist */,
 			);
 			path = osyaberiya;
@@ -182,7 +179,6 @@
 			files = (
 				461959391FE4F0E400E5D763 /* Assets.xcassets in Resources */,
 				461959371FE4F0E400E5D763 /* Main.storyboard in Resources */,
-				465A36941FE509C500C25BE7 /* sample.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +419,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = koooootake.osyaberiya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "osyaberiya-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "osyaberiya/osyaberiya-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -445,7 +441,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = koooootake.osyaberiya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "osyaberiya-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "osyaberiya/osyaberiya-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
