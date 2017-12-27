@@ -12,6 +12,7 @@
 		461959371FE4F0E400E5D763 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 461959351FE4F0E400E5D763 /* Main.storyboard */; };
 		461959391FE4F0E400E5D763 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 461959381FE4F0E400E5D763 /* Assets.xcassets */; };
 		4654EFE41FF3E70B00F781AC /* UtilModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4654EFE31FF3E70B00F781AC /* UtilModel.swift */; };
+		4654EFE61FF3EB4A00F781AC /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4654EFE51FF3EB4A00F781AC /* PostViewModel.swift */; };
 		465A368E1FE503E400C25BE7 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465A368D1FE503E400C25BE7 /* ResultViewController.swift */; };
 		465A36901FE5062D00C25BE7 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 465A368F1FE5062C00C25BE7 /* AVKit.framework */; };
 		465A36921FE5063200C25BE7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 465A36911FE5063200C25BE7 /* AVFoundation.framework */; };
@@ -32,6 +33,7 @@
 		461959381FE4F0E400E5D763 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4619593D1FE4F0E400E5D763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4654EFE31FF3E70B00F781AC /* UtilModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilModel.swift; sourceTree = "<group>"; };
+		4654EFE51FF3EB4A00F781AC /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		465A368D1FE503E400C25BE7 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		465A368F1FE5062C00C25BE7 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		465A36911FE5063200C25BE7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -83,6 +85,7 @@
 				465A36981FE5431B00C25BE7 /* osyaberiya-Bridging-Header.h */,
 				461959311FE4F0E400E5D763 /* AppDelegate.swift */,
 				461959331FE4F0E400E5D763 /* PostViewController.swift */,
+				4654EFE51FF3EB4A00F781AC /* PostViewModel.swift */,
 				465A368D1FE503E400C25BE7 /* ResultViewController.swift */,
 				46A428211FE68910005034C4 /* SettingViewController.swift */,
 				46CEFB581FE9502B0039AA78 /* LayoutViewModel.swift */,
@@ -273,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4654EFE61FF3EB4A00F781AC /* PostViewModel.swift in Sources */,
 				46A428201FE57895005034C4 /* UIAlertController+extension.swift in Sources */,
 				461959341FE4F0E400E5D763 /* PostViewController.swift in Sources */,
 				46A428241FE69171005034C4 /* TwitterViewModel.swift in Sources */,

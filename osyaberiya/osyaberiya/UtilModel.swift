@@ -11,5 +11,5 @@ import Foundation
 class UtilModel: NSObject {
     static let maxTextCount = 99
     static let okMessage = "おk"
-    static let contactMessage = "@osyaberiyaまでお問い合わせください"
+    static let contactMessage = "何度も失敗する場合は\n@osyaberiyaまでお問い合わせください"
 }
