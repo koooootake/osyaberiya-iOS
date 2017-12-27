@@ -19,7 +19,7 @@
 		465A36961FE51FFF00C25BE7 /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465A36951FE51FFF00C25BE7 /* VideoManager.swift */; };
 		46A428201FE57895005034C4 /* UIAlertController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4281F1FE57895005034C4 /* UIAlertController+extension.swift */; };
 		46A428221FE68910005034C4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A428211FE68910005034C4 /* SettingViewController.swift */; };
-		46A428241FE69171005034C4 /* TwitterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A428231FE69171005034C4 /* TwitterViewModel.swift */; };
+		46A428241FE69171005034C4 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A428231FE69171005034C4 /* ResultViewModel.swift */; };
 		46CEFB591FE9502B0039AA78 /* LayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CEFB581FE9502B0039AA78 /* LayoutViewModel.swift */; };
 		AA4AD5209BE46BCA83B33A3F /* Pods_osyaberiya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C098AE4288AF92030FF695C9 /* Pods_osyaberiya.framework */; };
 /* End PBXBuildFile section */
@@ -41,7 +41,7 @@
 		465A36981FE5431B00C25BE7 /* osyaberiya-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "osyaberiya-Bridging-Header.h"; sourceTree = "<group>"; };
 		46A4281F1FE57895005034C4 /* UIAlertController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+extension.swift"; sourceTree = "<group>"; };
 		46A428211FE68910005034C4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		46A428231FE69171005034C4 /* TwitterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterViewModel.swift; sourceTree = "<group>"; };
+		46A428231FE69171005034C4 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 		46CEFB581FE9502B0039AA78 /* LayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutViewModel.swift; sourceTree = "<group>"; };
 		C098AE4288AF92030FF695C9 /* Pods_osyaberiya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_osyaberiya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E473DD01AD0C9AD8B95EAB03 /* Pods-osyaberiya.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-osyaberiya.debug.xcconfig"; path = "Pods/Target Support Files/Pods-osyaberiya/Pods-osyaberiya.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,9 +87,9 @@
 				461959331FE4F0E400E5D763 /* PostViewController.swift */,
 				4654EFE51FF3EB4A00F781AC /* PostViewModel.swift */,
 				465A368D1FE503E400C25BE7 /* ResultViewController.swift */,
+				46A428231FE69171005034C4 /* ResultViewModel.swift */,
 				46A428211FE68910005034C4 /* SettingViewController.swift */,
 				46CEFB581FE9502B0039AA78 /* LayoutViewModel.swift */,
-				46A428231FE69171005034C4 /* TwitterViewModel.swift */,
 				4654EFE31FF3E70B00F781AC /* UtilModel.swift */,
 				465A36951FE51FFF00C25BE7 /* VideoManager.swift */,
 				46A4281F1FE57895005034C4 /* UIAlertController+extension.swift */,
@@ -279,7 +279,7 @@
 				4654EFE61FF3EB4A00F781AC /* PostViewModel.swift in Sources */,
 				46A428201FE57895005034C4 /* UIAlertController+extension.swift in Sources */,
 				461959341FE4F0E400E5D763 /* PostViewController.swift in Sources */,
-				46A428241FE69171005034C4 /* TwitterViewModel.swift in Sources */,
+				46A428241FE69171005034C4 /* ResultViewModel.swift in Sources */,
 				46CEFB591FE9502B0039AA78 /* LayoutViewModel.swift in Sources */,
 				465A368E1FE503E400C25BE7 /* ResultViewController.swift in Sources */,
 				461959321FE4F0E400E5D763 /* AppDelegate.swift in Sources */,

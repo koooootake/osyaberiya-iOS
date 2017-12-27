@@ -10,9 +10,6 @@ import UIKit
 import AVFoundation
 import CoreMedia
 import Photos
-import FBSDKCoreKit
-import FBSDKLoginKit
-import FBSDKShareKit
 
 class AVPlayerView: UIView {
     
@@ -43,24 +40,24 @@ class ResultViewController: UIViewController {
     var fileUrl: URL?
     
     override func viewDidLoad() {
-        // ナビゲーションを透明にする処理
+        //ナビゲーションバーレイアウト
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
+        //ボタンレイアウト
         LayoutViewModel.dropShadow(view: twitterButton)
         LayoutViewModel.dropShadow(view: facebookButton)
         LayoutViewModel.dropShadow(view: saveButton)
         LayoutViewModel.dropShadow(view: closeButton)
         
+        //動画設定
         guard let fileUrl = VideoManager.shared.getFileURL() else {
-            let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")
-            self.present(alert, animated: true, completion: nil)
+            videoLoadErrorAlert(message: "URLが無効")
             return
         }
         let avAsset = AVURLAsset(url: fileUrl)
         playerItem = AVPlayerItem(asset: avAsset)
         videoPlayer = AVPlayer(playerItem: playerItem)
-        
         self.view.backgroundColor = UIColor.clear
         self.view.alpha = 0.0
         settingButton.tintColor = UIColor.clear
@@ -68,16 +65,11 @@ class ResultViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
+        //動画設定
         let videoPlayerView = AVPlayerView(frame: playerView.bounds)
-        
         guard let layer = videoPlayerView.layer as? AVPlayerLayer else {
-            let alert = UIAlertController.show(title: "動画の表示に失敗しました", message: "")
-            self.present(alert, animated: true, completion: nil)
+            videoLoadErrorAlert(message: "AVPlayerLayerError")
             return
         }
         layer.videoGravity = .resizeAspectFill
@@ -87,6 +79,10 @@ class ResultViewController: UIViewController {
         layer.borderWidth = 2.0
         layer.borderColor = UIColor.white.cgColor
         playerView.layer.addSublayer(layer)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         //アニメーション
         UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseIn], animations: {
@@ -105,12 +101,10 @@ class ResultViewController: UIViewController {
     @IBAction func twitter(_ sender: Any) {
         if TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers() {// ログインしている時
             guard let url = VideoManager.shared.getURL() else {
-                let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")
-                self.present(alert, animated: true, completion: nil)
+                videoLoadErrorAlert(message: "URLが無効")
                 return
             }
-            let composer = TWTRComposerViewController(initialText: "#おしゃべりや", image: nil, videoURL: url)
-            present(composer, animated: true, completion: nil)
+            TwitterViewModel.share(url: url, vc: self)
         } else {// ログインしていない時
             TwitterViewModel.login()
         }
@@ -118,134 +112,37 @@ class ResultViewController: UIViewController {
     
     @IBAction func facebook(_ sender: Any) {
         if FBSDKAccessToken.current() != nil {// ログインしている時
-            saveVideo(completion: { isSucsess in
+            //カメラロール判定
+            guard requestPhotoLibrary() else { return }
+            
+            ResultViewModel.saveVideo(completion: { (isSucsess, title, message) in
                 if isSucsess {
-                    self.fbPost()
+                    guard let url = ResultViewModel.shareUrl() else {
+                        self.videoLoadErrorAlert(message: "URLが無効")
+                        return
+                    }
+                    FacebookViewModel.share(url: url, vc: self)
+                } else {
+                    let alert = UIAlertController.show(title: title, message: message)
+                    self.present(alert, animated: true, completion: nil)
                 }
             })
         } else {// ログインしていない時
-            let loginManager = FBSDKLoginManager()
-            loginManager.logIn(withPublishPermissions: ["publish_actions"], from: self) { (result, error) in
-                if let error = error {
-                    print("Error : \(error)")
-                    return
-                }
-                if let result = result {
-                    if result.isCancelled {
-                        print("Cancell")
-                        return
-                    } else {
-                        print("Sucsess Login :")
-                        
-                    }
-                }
-            }
+            FacebookViewModel.login(vc: self)
         }
     }
     
-    private func fbPost() {
-        //最後に保存したVideoのassetURLを取得
-        let asset = self.getLastVideo()
-        guard let identifier = asset?.localIdentifier else {
-            let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: UtilModel.contactMessage)
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-        let id = identifier.prefix(36)
-        let url = "assets-library://asset/asset.MP4?id=\(id)&ext=MP4"
-        print("url : \(url)")
-        let videoUrl = URL(string: url)
-        
-        //ビデオシェア
-        let content = FBSDKShareVideoContent()
-        guard let video = FBSDKShareVideo(videoURL: videoUrl) else {
-            let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message: UtilModel.contactMessage)
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-        content.video = video
-        DispatchQueue.main.async {
-            FBSDKShareDialog.show(from: self, with: content, delegate: nil)
-        }
-    }
     // 動画をダウンロードして保存
     @IBAction func save(_ sender: Any) {
         LayoutViewModel.buttonAnimation(button: saveButton)
-        saveVideo(completion: { isSucsess in
-            if isSucsess {
-                let alert = UIAlertController.show(title: "動画を保存しました", message: "")
-                self.present(alert, animated: true, completion: nil)
-            }
-            
-        })
-    }
-    
-    private func saveVideo(completion: @escaping (_ isSucsess: Bool) -> Void) {
-        //カメラロール判定
-        guard requestPhotoLibrary() else {
-            return
-        }
         
-        guard let url = VideoManager.shared.getURL() else {
-            let alert = UIAlertController.show(title: "動画のURLが無効です", message: "")
+        //カメラロール判定
+        guard requestPhotoLibrary() else { return }
+        
+        ResultViewModel.saveVideo(completion: { (isSucsess, title, message) in
+            let alert = UIAlertController.show(title: title, message: message)
             self.present(alert, animated: true, completion: nil)
-            completion(false)
-            return
-        }
-        let request = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: request, completionHandler: {
-            (data, response, error) in
-            
-            if let error = error {
-                let alert = UIAlertController.show(title: "通信に失敗しました", message: "")
-                self.present(alert, animated: true, completion: nil)
-                print("Error session　: \(error)")
-                completion(false)
-                return
-            }
-            
-            guard
-                let data = data,
-                let searchPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last else {
-                    self.videoSaveErrorAlert()
-                    print("Error data or Path")
-                    completion(false)
-                    return
-            }
-            
-            let name = VideoManager.shared.fileName
-            let tmpSearchPath = searchPath + "/\(name ?? "tmp")"
-            let tmpUrl = URL(fileURLWithPath: tmpSearchPath)
-            try? data.write(to: tmpUrl)
-            
-            PHPhotoLibrary.shared().performChanges({
-                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: tmpUrl)
-            }) { saved, error in
-                if saved {
-                    print("Sucsess save video : \(tmpUrl)")
-                    completion(true)
-                    
-                } else {
-                    self.videoSaveErrorAlert()
-                    print("Error save")
-                    completion(false)
-                }
-            }
         })
-        task.resume()
-    }
-    
-    private func getLastVideo() -> PHAsset? {
-        let assets: PHFetchResult = PHAsset.fetchAssets(with: .video, options: nil)
-        guard let asset = assets.lastObject else {
-            return nil
-        }
-        return asset
-    }
-    
-    private func videoSaveErrorAlert() {
-        let alert = UIAlertController.show(title: "動画の保存に失敗しました", message: "繰り返し失敗する場合は\n\(UtilModel.contactMessage)")
-        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func close(_ sender: Any) {
@@ -263,6 +160,12 @@ class ResultViewController: UIViewController {
         })
     }
     
+    private func videoLoadErrorAlert(message: String) {
+        let alert = UIAlertController.show(title: "動画の読み込みに失敗しました", message:"\(UtilModel.contactMessage)\n\(message)" )
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //フォト許可
     private func requestPhotoLibrary() -> Bool {
         let status = PHPhotoLibrary.authorizationStatus()
         switch status {
