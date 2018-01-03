@@ -112,7 +112,7 @@ class FacebookViewModel: NSObject {
     
     static func login(vc: UIViewController) {
         let loginManager = FBSDKLoginManager()
-        loginManager.logIn(withPublishPermissions: ["publish_actions"], from: vc) { (result, error) in
+        loginManager.logIn(withPublishPermissions: nil, from: vc) { (result, error) in
             if let error = error {
                 print("Error Facebook Login : \(error)")
                 return
