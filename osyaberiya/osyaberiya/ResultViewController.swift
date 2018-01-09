@@ -138,6 +138,9 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func close(_ sender: Any) {
+        if let vc = presentingViewController as? PostViewController {
+            vc.textView.becomeFirstResponder()
+        }
         self.dismiss(animated: true, completion: nil)
         //同時押し対策
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
