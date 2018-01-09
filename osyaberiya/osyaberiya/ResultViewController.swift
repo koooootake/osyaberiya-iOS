@@ -59,9 +59,6 @@ class ResultViewController: UIViewController {
         let avAsset = AVURLAsset(url: fileUrl)
         playerItem = AVPlayerItem(asset: avAsset)
         videoPlayer = AVPlayer(playerItem: playerItem)
-        self.view.backgroundColor = UIColor.clear
-        self.view.alpha = 0.0
-        settingButton.tintColor = UIColor.clear
     }
     
     override func viewDidLayoutSubviews() {
@@ -85,13 +82,7 @@ class ResultViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //アニメーション
-        UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseIn], animations: {
-            self.view.alpha = 1.0
-            self.settingButton.tintColor = UIColor.white
-        }, completion: { _ in
-            self.videoPlayer.play()
-        })
+        self.videoPlayer.play()
     }
     
     @IBAction func replay(_ sender: Any) {
@@ -147,18 +138,11 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func close(_ sender: Any) {
-        //アニメーション
-        UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseIn], animations: {
-            self.view.alpha = 0.0
-            self.settingButton.tintColor = UIColor.clear
-        }, completion: { _ in
-            
+        self.dismiss(animated: true, completion: nil)
+        //同時押し対策
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.dismiss(animated: true, completion: nil)
-            //同時押し対策
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.dismiss(animated: true, completion: nil)
-            }
-        })
+        }
     }
     
     private func videoLoadErrorAlert(message: String) {

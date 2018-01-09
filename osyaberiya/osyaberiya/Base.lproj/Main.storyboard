@@ -322,7 +322,7 @@
         <!--Navigation Controller-->
         <scene sceneID="o68-yx-XmK">
             <objects>
-                <navigationController storyboardIdentifier="ResultViewController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overCurrentContext" id="9Lj-tV-G8d" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ResultViewController" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="9Lj-tV-G8d" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="W7C-Dg-bmO">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
