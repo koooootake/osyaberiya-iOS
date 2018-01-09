@@ -40,6 +40,7 @@ class ResultViewController: UIViewController {
     var fileUrl: URL?
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         //ナビゲーションバーレイアウト
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
