@@ -25,7 +25,7 @@ class PostViewController: UIViewController {
         //テキストViewレイアウト
         textView.textContainerInset = UIEdgeInsetsMake(20, 10, 20, 10)
         textView.sizeToFit()
-        textView.text = "おしゃべりやです"
+        textView.text = "楽しくおしゃべりしよう！"
         textView.returnKeyType = .done
         textView.delegate = self
         countLabel.text = "\(textView.text.count)/\(UtilModel.maxTextCount)"
