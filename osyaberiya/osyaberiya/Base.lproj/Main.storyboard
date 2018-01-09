@@ -221,7 +221,7 @@
                                     <constraint firstAttribute="height" constant="100" id="cIU-wG-s6w"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="clear"/>
+                                <state key="normal" image="close"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="50"/>
@@ -341,6 +341,7 @@
     </scenes>
     <resources>
         <image name="clear" width="192" height="192"/>
+        <image name="close" width="192" height="192"/>
         <image name="fb" width="32" height="32"/>
         <image name="lip" width="192" height="192"/>
         <image name="pink_bg" width="2048" height="2732"/>
